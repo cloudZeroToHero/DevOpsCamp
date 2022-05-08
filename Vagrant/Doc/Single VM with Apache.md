@@ -1,6 +1,7 @@
-# How I created custom box and what provisioned Apache
+# How I created custom box with Apache
 
 As a start point I have an Virtual Box VM created and prepared for Vagrant - [this is how i did it](https://github.com/cloudZeroToHero/DevOpsCamp/blob/main/Vagrant/Doc/Parent%20VM%20and%20Base%20Box.md)
+It is of course possible to user one of the publicly available boxes from > https://app.vagrantup.com/boxes/search
 
 
 First - I need a vagrantfile, so I run
