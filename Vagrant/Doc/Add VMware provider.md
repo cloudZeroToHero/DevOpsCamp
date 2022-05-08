@@ -25,5 +25,5 @@ And now it is possible to deploy a VM under VMware Player :smile:
 vagrant up --provider vmware_desktop
 ```
 
-## To further tweak boxes provider settings can be used - please see
+## To further tweak VMware provider settings - please see
 > https://www.vagrantup.com/docs/providers/vmware/configuration
