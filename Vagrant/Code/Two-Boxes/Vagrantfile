@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 # this is just a example how to declare two boxes in one vagrantfile
 
 Vagrant.configure("2") do |config|
