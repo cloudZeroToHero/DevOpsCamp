@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
       setfacl -R -m u:vagrant:rwx /var/www/html
 
       # now it is time to load the new start page to our web server
-      sudo wget --no-check-certificate https://raw.githubusercontent.com/cloudZeroToHero/DevOpsCamp-code/main/Vagrant/Test-Dev-env/index.html -O /var/www/html/index.html
+      sudo wget --no-check-certificate https://raw.githubusercontent.com/cloudZeroToHero/DevOpsCamp/main/Vagrant/Code/Test-Dev-Env/index.html -O /var/www/html/index.html
   
       # another way to add files to the box - from foler shared from the host machine
       cp /home/vagrant/share/phpinfo.php /var/www/html/phpinfo.php
