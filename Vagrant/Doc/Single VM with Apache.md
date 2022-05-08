@@ -8,6 +8,12 @@ First - I need a vagrantfile, so I run
 ```
 vagrant init myUbuntu2204
 ```
+or (with use of HashiCorp image)
+```
+vagrant init hashicorp/precise64
+```
+
+
 Of course the file will contain all the comments, but the simplified version is like this:
 ```ruby
 # -*- mode: ruby -*-
