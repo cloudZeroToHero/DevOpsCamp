@@ -110,7 +110,7 @@ Thus the idea to copy files from different sources to web catalog is also more a
 Few deferent methods to copy files to box:
  - from the public website:
  ```
- sudo wget --no-check-certificate https://raw.githubusercontent.com/cloudZeroToHero/DevOpsCamp-code/main/Vagrant/Test-Dev-env/index.html -O /var/www/html/index.html
+ sudo wget --no-check-certificate https://raw.githubusercontent.com/cloudZeroToHero/DevOpsCamp/main/Vagrant/Code/Test-Dev-Env/index.html -O /var/www/html/index.html
  ```
 
 
@@ -182,7 +182,7 @@ which I can see on the server
 Seems that goal is achieved ! :smile:
 Whole vagrantfile is available there
 
-> https://github.com/cloudZeroToHero/DevOpsCamp-code/blob/main/Vagrant/Test-Dev-env/Vagrantfile
+> https://github.com/cloudZeroToHero/DevOpsCamp/blob/main/Vagrant/Code/Test-Dev-Env/Vagrantfile
 
 
 
