@@ -28,7 +28,7 @@ Fortunately Terraform also provided me with IDs of my tenant, so it was easy to 
 
 ## First "apply"
 
-I wrote a simple terraform file (available there > https://github.com/cloudZeroToHero/DevOpsCamp/blob/main/Terraform-Azure/Code/ResourceGroup/main.tf) and run *** terraform apply***
+I wrote a simple terraform file (available there > https://github.com/cloudZeroToHero/DevOpsCamp/blob/main/Terraform-Azure/Code/ResourceGroup/main.tf) and run ** terraform apply**
 
 And the result was as expected - resource group with assigned tags 
 ![azure view - resource group](./images/01-rg-created.jpg)
