@@ -1,8 +1,8 @@
-# Now ignore my secrets (dont want them to be visible on GitHub)
-./secrets.tf
-
 # Local .terraform directories
 **/.terraform/*
+
+# lock file
+*/.terraform.lock*
 
 # .tfstate files
 *.tfstate
