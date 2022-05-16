@@ -1,0 +1,79 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  #definition of server box  
+    config.vm.define "server" do |server|
+  
+    # uncomment followng line if vagrant cannot login using SSH
+    #server.ssh.username = "vagrant"
+    #serwer.ssh.password = "vagrant"
+      
+    server.vm.provider "virtualbox" do |v|
+      v.memory = 8192
+      v.cpus = 8
+    end
+
+    #this will be a private netowrk shared between server and clinet boxes
+    server.vm.network "private_network", ip: "10.10.1.1", netmask: "24", virtualbox__intnet: "mynet"
+    
+    # myUbuntu2204 is custom box - please see "https://github.com/cloudZeroToHero/DevOpsCamp/blob/main/Vagrant/Doc/Parent%20VM%20and%20Base%20Box.md"
+    server.vm.box = "myUbuntu2204"
+    server.vm.box_check_update = false
+    server.vm.synced_folder "d:\\share", "/home/vagrant/share", owner: "vagrant"
+    server.vm.synced_folder "d:\\share\\www", "/var/www/html/", create: true
+  
+ 
+    # port redirection 
+    # server.vm.network "forwarded_port", guest: 80, host: 8080
+  
+    server.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update
+      sudo apt-get upgrade
+  
+      # Let's assume that a web server and PHP are necessary for the app to run
+      sudo apt-get install -y apache2
+      sudo apt-get install -y php libapache2-mod-php
+    
+      # allow user vagrant to write to web page directory
+      setfacl -R -m u:vagrant:rwx /var/www/html
+
+      # now it is time to load the new start page to our web server
+      sudo wget --no-check-certificate https://raw.githubusercontent.com/cloudZeroToHero/DevOpsCamp/main/Vagrant/Code/Test-Dev-Env/index.html -O /var/www/html/index.html
+  
+      # another way to add files to the box - from foler shared from the host machine
+      cp /home/vagrant/share/phpinfo.php /var/www/html/phpinfo.php
+  
+    SHELL
+
+    # and yet another way to copy files from host machine to box - with file provisioner
+    # in case of Wondows to copy file from local drive a double \ is required instead of single \ 
+    server.vm.provision "file", source: ".\\page1.html", destination: "/var/www/html/page1.html"
+ 
+  end  
+
+
+  # definition of server box  
+    config.vm.define "client" do |client|
+    client.vm.box = "myUbuntu2204"
+    client.vm.network "private_network", ip: "10.10.1.2", netmask: "24", virtualbox__intnet: "mynet"
+    client.vm.synced_folder "d:\\share", "/home/vagrant/share", owner: "vagrant"
+    
+    client.vm.provider "virtualbox" do |vc|
+        vc.memory = 4096
+        vc.cpus = 4
+    end
+    
+    client.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update
+      sudo apt-get upgrade
+      # it is possible to get the Visual Studio Code package directly from Microsoft web page, but it takes more time during the deploymetn 
+      # than installation from local file.
+      #sudo wget --no-check-certificate https://go.microsoft.com/fwlink/?LinkID=760868 -O /home/vagrant/code_1.66.2-1649664567_amd64.deb
+      sudo apt install -y /home/vagrant/share/code_1.66.2-1649664567_amd64.deb
+    SHELL
+  
+  end
+
+end

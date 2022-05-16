@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # myUbuntu2204 is custom box - please see "https://github.com/cloudZeroToHero/DevOpsCamp-DOC/blob/main/Vagrant/Parent%20VM%20and%20Base%20Box.md"
+  config.vm.box = "myUbuntu2204"
+  config.vm.box_check_update = false
+
+  # uncomment followng line if vagrant cannot login using SSH
+  #config.ssh.username = "vagrant"
+  #config.ssh.password = "vagrant"
+  
+  # Just to check if shell provisioning works I install Apache
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y apache2
+  SHELL
+
+
+end
