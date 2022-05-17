@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     #this will be a private netowrk shared between server and clinet boxes
     server.vm.network "private_network", ip: "10.10.1.1", netmask: "24", virtualbox__intnet: "mynet"
     
-    # myUbuntu2204 is custom box - please see "https://github.com/cloudZeroToHero/DevOpsCamp/blob/main/Vagrant/Doc/Parent%20VM%20and%20Base%20Box.md"
+    # myUbuntu2204 is custom box - please see "https://github.com/cloudZeroToHero/DevOpsCamp-Vagrant/blob/main/Doc/Parent%20VM%20and%20Base%20Box.md"
     server.vm.box = "myUbuntu2204"
     server.vm.box_check_update = false
     server.vm.synced_folder "d:\\share", "/home/vagrant/share", owner: "vagrant"
@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
       setfacl -R -m u:vagrant:rwx /var/www/html
 
       # now it is time to load the new start page to our web server
-      sudo wget --no-check-certificate https://raw.githubusercontent.com/cloudZeroToHero/DevOpsCamp/main/Vagrant/Code/Test-Dev-Env/index.html -O /var/www/html/index.html
+      sudo wget --no-check-certificate https://raw.githubusercontent.com/cloudZeroToHero/DevOpsCamp-Vagrant/main/Code/Test-Dev-Env/index.html -O /var/www/html/index.html
   
       # another way to add files to the box - from foler shared from the host machine
       cp /home/vagrant/share/phpinfo.php /var/www/html/phpinfo.php
